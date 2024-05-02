@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Employees</title>
+  <!-- Angular Material Styles -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Sidebar -->
+  <mat-sidenav-container class="container-fluid" style="height: 100vh;">
+    <mat-sidenav #sidenav mode="side">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </a>
+        <a mat-list-item routerLink="/user">
+          <mat-icon>group</mat-icon>
+          View Employees
+        </a>
+        <a mat-list-item routerLink="/add">
+          <mat-icon>person_add</mat-icon>
+          Add Employees
+        </a>
+        <a mat-list-item routerLink="/departments">
+            <mat-icon>business</mat-icon>
+            Add Department
+          </a>
+          <a mat-list-item routerLink="/locations">
+            <mat-icon>location_on</mat-icon>
+            Add Location
+          </a>
+        <span class="spacer"></span>
+        <a mat-list-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>Logout
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content>
+      <!-- Navbar -->
+      <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <span><mat-icon>person</mat-icon> Welcome, {{ name }}</span>
+      </mat-toolbar>
+
+      <!-- Update User Form -->
+      <div class="my-5 mx-auto" style="max-width: 50%;">
+        <h2 class="mat-display-2 text-center mb-3">Update Department</h2>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <!-- Name -->
+          <mat-form-field class="mb-3" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter Name" required>
+          </mat-form-field>
+          
+
+
+          <!-- Submit Button -->
+          <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit" >Update</button>
+        </form>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fluid text-center">
+      <p>&copy; 2024 Ajay Kumar S K. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  <!-- Angular Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+
+<mat-sidenav-container class="container-fluid" style="height: 100vh;">
+    <!-- Sidebar -->
+    <mat-sidenav #sidenav mode="side">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </a>
+        <a mat-list-item routerLink="/user">
+          <mat-icon>group</mat-icon>
+          View Employees
+        </a>
+        <a mat-list-item routerLink="/add">
+          <mat-icon fontIcon="person_add"></mat-icon>
+          Add Employees
+        </a>
+        <a mat-list-item routerLink="/departments">
+          <mat-icon>business</mat-icon>
+          Add Department
+        </a>
+        <a mat-list-item routerLink="/locations">
+          <mat-icon>location_on</mat-icon>
+          Add Location
+        </a>
+        <span class="spacer"></span>
+        <a mat-list-item (click)="logout()">
+          <mat-icon fontIcon="logout"></mat-icon>Logout
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Main content -->
+    <mat-sidenav-content>
+      <!-- Toolbar -->
+      <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <span><mat-icon fontIcon="person"></mat-icon> Welcome, {{ name }}</span>
+      </mat-toolbar>
+      
+      <!--Form to add user-->
+<div class="my-4">
+  <div class="mx-auto w-50" style="max-width: 100%;">
+    <h4 class="text-center mb-3">Add Employee Details</h4>
+    <form [formGroup]="form" (ngSubmit)="addUser()">
+      <!-- Name -->
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter Name">
+      </mat-form-field>
+      <!-- Email -->
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="Enter Email">
+      </mat-form-field>
+
+      <!-- Gender -->
+      <div class="form-group">
+        <label>Gender</label><br>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="others">Others</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Department -->
+      <mat-form-field appearance="fill">
+        <mat-label>Department:</mat-label>
+        <mat-select formControlName="department">
+          <mat-option *ngFor="let dept of departments" [value]="dept.name">{{ dept.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Location -->
+      <mat-form-field appearance="fill">
+        <mat-label>Location:</mat-label>
+        <mat-select formControlName="location">
+          <mat-option *ngFor="let loc of locations" [value]="loc.name">{{ loc.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Date of Joining -->
+      <mat-form-field appearance="fill">
+        <mat-label>Date of Joining</mat-label>
+        <input matInput formControlName="dateOfJoining" type="date">
+      </mat-form-field>
+
+      
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+</div>
+
+      
+     
+  
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container-fluid text-center">
+          <p>&copy; 2024 Ajay Kumar S K. All rights reserved.</p>
+        </div>
+      </footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

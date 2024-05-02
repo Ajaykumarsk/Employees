@@ -1,0 +1,34 @@
+<!-- app.component.html -->
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button (click)="opened = !opened"><mat-icon>menu</mat-icon></button>
+    <span>My App</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side">
+    <mat-nav-list>
+      <mat-list-item><a mat-button routerLink="/login">Login</a></mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p>hello</p>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="Sushi">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+      </mat-form-field>
+
+      
+    </form>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

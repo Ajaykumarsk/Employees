@@ -1,0 +1,47 @@
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+
+mat-sidenav {
+  width: 260px; // Adjust the width as needed
+  padding-top: 60px; // Adjust based on your toolbar height
+  background-color: #f3f3f2;
+  color: #dbbfbf;
+}
+
+mat-sidenav-content {
+  flex: 1;
+  padding: 24px;
+}
+
+@media (max-width: 992px) {
+  mat-sidenav {
+    width: auto; // Reduced width for smaller screens
+  }
+
+  mat-sidenav-content {
+    padding: 24px 50px; // Adjusted padding for smaller screens
+  }
+}
+
+table-container {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-style: inherit;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2b6b6;
+}

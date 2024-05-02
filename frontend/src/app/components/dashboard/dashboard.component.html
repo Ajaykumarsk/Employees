@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+
+<mat-sidenav-container class="container-fluid" style="height: 100vh;">
+    <!-- Sidebar -->
+    <mat-sidenav #sidenav mode="side" opened>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </a>
+        <a mat-list-item routerLink="/user">
+          <mat-icon>group</mat-icon>
+          View Employees
+        </a>
+        <a mat-list-item routerLink="/add">
+          <mat-icon fontIcon="person_add"></mat-icon>
+          Add Employees
+        </a>
+        <a mat-list-item routerLink="/departments">
+          <mat-icon>business</mat-icon>
+          Add Department
+        </a>
+        <a mat-list-item routerLink="/locations">
+          <mat-icon>location_on</mat-icon>
+          Add Location
+        </a>
+        <span class="spacer"></span>
+        <a mat-list-item (click)="logout()">
+          <mat-icon fontIcon="logout"></mat-icon>Logout
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Main content -->
+    <mat-sidenav-content>
+      <!-- Toolbar -->
+      <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <span><mat-icon fontIcon="person"></mat-icon> Welcome, {{ name }}</span>
+      </mat-toolbar>
+  
+      <!-- Main content area -->
+      <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-card class="dashboard-card dashboard-card-green">
+              <mat-card-header>
+                <mat-card-title>Total Employees</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-icon class="card-icon-large" fontIcon="group"></mat-icon> {{ totalUsers }}
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-4">
+            <mat-card class="dashboard-card dashboard-card-blue-dark">
+              <mat-card-header>
+                <mat-card-title>Male Employees</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-icon class="card-icon-large" fontIcon="male"></mat-icon> {{ maleUsers }}
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-4">
+            <mat-card class="dashboard-card dashboard-card-orange-dark">
+              <mat-card-header>
+                <mat-card-title>Female Employees</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-icon class="card-icon-large" fontIcon="female"></mat-icon> {{ femaleUsers }}
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+  
+        <!-- Additional Statistics -->
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <mat-card class="dashboard-card l-bg-cyan">
+              <mat-card-header>
+                <mat-card-title>Total Departments</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p><i class="fas fa-building"></i> {{ totalDepartments }}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-6">
+            <mat-card class="dashboard-card l-bg-green">
+              <mat-card-header>
+                <mat-card-title>Total Locations</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p><i class="fas fa-map-marker-alt"></i> {{ totalLocations }}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container-fluid text-center">
+          <p>&copy; 2024 Ajay Kumar S K. All rights reserved.</p>
+        </div>
+      </footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

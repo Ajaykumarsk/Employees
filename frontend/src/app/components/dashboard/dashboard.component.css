@@ -1,0 +1,78 @@
+
+  
+        /* Custom Card Styles */
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(221, 100, 205, 0.1);
+            transition: transform 0.3s ease;
+            background: linear-gradient(to bottom right, #ec9696, #4f9ae6);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(89, 64, 177, 0.2);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1e1e25ec;
+            margin-bottom: 12px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            color: #010102;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .card-link:hover {
+            color: #0056b3;
+        }
+
+        /* Card Header and Footer Styles */
+        .card-header,
+        .card-footer {
+            background-color: #1f63a7;
+            border-top: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        .card-footer {
+            border-top: none;
+            text-align: right;
+        }
+
+        /* Custom Button Styles */
+        .btn-custom {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .example-spacer {
+            flex: 1 1 auto;
+          }
+          

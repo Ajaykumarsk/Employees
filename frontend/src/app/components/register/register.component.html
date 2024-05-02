@@ -1,0 +1,47 @@
+<section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-8 col-md-8 col-lg-7 col-xl-6">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title><h4 class="text-uppercase text-center mb-2">Create an account</h4></mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <form [formGroup]="registrationForm" (ngSubmit)="register()">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Your Name</mat-label>
+                    <input matInput formControlName="username" placeholder="Enter Username">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Your Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Enter Email">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" placeholder="Enter Password">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Repeat Password</mat-label>
+                    <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+                  </mat-form-field>
+  
+                  <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
+  
+                  <div *ngIf="registrationError" class="alert alert-danger mt-3" role="alert">{{ registrationError }}</div>
+  
+                  <p class="text-center text-muted mt-5 mb-0">Already have an account?
+                    <a routerLink="/login" class="fw-bold text-body"><u>Login here</u></a>
+                  </p>
+                </form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

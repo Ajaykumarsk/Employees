@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <!-- Angular Material Styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+
+ 
+</head>
+<body>
+
+<!-- Angular Material Sidenav Container -->
+<mat-sidenav-container class="container-fluid">
+
+    <!-- Angular Material Sidenav (Sidebar) -->
+    <mat-sidenav #sidenav mode="side" >
+        <mat-nav-list>
+            <a mat-list-item routerLink="/dashboard">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+            </a>
+            <a mat-list-item routerLink="/user">
+                <mat-icon>group</mat-icon>
+                View Employees
+            </a>
+            <a mat-list-item routerLink="/add">
+                <mat-icon>person_add</mat-icon>
+                Add Employees
+            </a>
+            <a mat-list-item routerLink="/departments">
+                <mat-icon>business</mat-icon>
+                Add Department
+              </a>
+              <a mat-list-item routerLink="/locations">
+                <mat-icon>location_on</mat-icon>
+                Add Location
+              </a>
+            <span class="spacer"></span>
+            <a mat-list-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                Logout
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Angular Material Sidenav Content -->
+    <mat-sidenav-content>
+
+        <!-- Angular Material Toolbar -->
+        <mat-toolbar>
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="example-spacer"></span>
+            <span><mat-icon>person</mat-icon> Welcome, {{ name }}</span>
+        </mat-toolbar>
+
+        <!-- Main content area -->
+        <div class="container-fluid mt-4">
+
+            <!-- Cards for displaying total employees, male employees, female employees -->
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-card class="dashboard-card dashboard-card-green">
+                        <mat-card-header>
+                            <mat-card-title>Total Employees</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-icon class="card-icon-large">group</mat-icon> {{ users }}
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-4">
+                    <mat-card class="dashboard-card dashboard-card-blue-dark">
+                        <mat-card-header>
+                            <mat-card-title>Male Employees</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-icon class="card-icon-large">male</mat-icon> {{ maleUsers }}
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-4">
+                    <mat-card class="dashboard-card dashboard-card-orange-dark">
+                        <mat-card-header>
+                            <mat-card-title>Female Employees</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-icon class="card-icon-large">female</mat-icon> {{ femaleUsers }}
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+    <!-- Search input field -->
+    <mat-form-field appearance="fill" class="search-field">
+        
+        <mat-label>Search by Email</mat-label>
+        <input matInput [(ngModel)]="searchQuery" (input)="applySearchFilter()" placeholder="Search by email...">
+       
+      </mat-form-field>
+      <div class="download-button-container">
+        <a href="http://127.0.0.1:8000/api/download-users-excel/" class="download-button">
+          <mat-icon class="card-icon-large">download</mat-icon>
+        </a>
+      </div>
+            <!-- Angular Material Table -->
+            
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="usersDataSource" class="mat-table" matSort>
+
+                    <!-- Define table columns -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef > Employee ID </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.id }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.name }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header="email"> Email </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef> Gender </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.gender }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="department">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header="department"> Department </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.department }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="location">
+                        <th mat-header-cell *matHeaderCellDef> Location </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.location }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateOfJoining">
+                        <th mat-header-cell *matHeaderCellDef> Date of Joining </th>
+                        <td mat-cell *matCellDef="let user"> {{ user.dateOfJoining }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let user">
+                            <button mat-icon-button color="primary" [routerLink]="'/update/' + user.id">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="deleteUser(user.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <!-- Table header row -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <!-- Table rows -->
+                    <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+             <!-- Paginator -->
+  <mat-paginator [length]="totalUsers"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChange($event)">
+</mat-paginator>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid text-center">
+                <p>&copy; 2024 Ajay Kumar S K. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<!-- Angular Material Script Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" integrity="sha256-0DEob5TOV1Qu5XstbQxzvOBnRffODMEeXYBwpqgAgHI=" crossorigin="anonymous"></script>
+
+</body>
+</html>

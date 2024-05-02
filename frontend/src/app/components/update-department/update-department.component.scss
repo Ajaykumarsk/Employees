@@ -1,0 +1,70 @@
+
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  
+  
+  mat-sidenav {
+    width: 260px; // Adjust the width as needed
+    padding-top: 60px; // Adjust based on your toolbar height
+    background-color: #fcfcfc;
+    color: #dbbfbf;
+  }
+  
+  mat-sidenav-content {
+    flex: 1;
+    padding: 24px;
+  }
+  
+  @media (max-width: 992px) {
+    mat-sidenav {
+      width: auto; // Reduced width for smaller screens
+    }
+  
+    mat-sidenav-content {
+      padding: 24px 50px; // Adjusted padding for smaller screens
+    }
+  }
+
+ // Customize the appearance of the mat-form-field container
+mat-form-field {
+  width: 100%; // Set width to 100% of its container
+  margin-bottom: 20px; // Add spacing at the bottom
+  font-family: 'Roboto', sans-serif; // Change font family
+
+  // Override default padding for the input element inside mat-form-field
+  input.mat-input-element {
+    padding: 12px; // Set padding for input element
+    border-radius: 4px; // Round the corners of the input field
+    border: 1px solid #ccc; // Add a border around the input field
+    transition: border-color 0.3s ease; // Smooth transition for border color change
+
+    // Apply different styles when the input field is focused
+    &:focus {
+      outline: none; // Remove default focus outline
+      border-color: dodgerblue; // Change border color on focus
+    }
+  }
+
+  // Customize the appearance of the mat-label inside mat-form-field
+  mat-form-field-label {
+    color: #333; // Set label text color
+    font-size: 16px; // Set label font size
+    font-weight: bold; // Set label font weight
+  }
+
+  // Customize the appearance of the mat-error (error message) inside mat-form-field
+  .mat-error {
+    color: crimson; // Set error message text color
+    font-size: 14px; // Set error message font size
+    margin-top: 4px; // Add spacing at the top of error message
+  }
+
+  // Customize the appearance of the mat-hint (hint text) inside mat-form-field
+  mat-hint {
+    color: #888; // Set hint text color
+    font-size: 14px; // Set hint text font size
+  }
+}
